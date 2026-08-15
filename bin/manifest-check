@@ -1,0 +1,12 @@
+#!/bin/bash
+# Daily check: are there installed packages the manifests don't know about?
+# Fires a desktop notification listing them. Run by dotfiles-manifest-check.timer.
+set -euo pipefail
+
+REPO="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+out="$(make -s -C "$REPO" capture)"
+
+if [[ $out != "manifest is up to date" ]]; then
+  notify-send -u normal -a dotfiles "Package manifest is stale" "$out
+(run 'make capture' in ~/dotfiles)"
+fi

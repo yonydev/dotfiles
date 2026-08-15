@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily check that the dotfiles package manifests are in sync
+
+[Timer]
+OnCalendar=daily
+# also fire on next boot/login if the machine was off when the timer was due
+Persistent=true
+RandomizedDelaySec=15min
+
+[Install]
+WantedBy=timers.target
