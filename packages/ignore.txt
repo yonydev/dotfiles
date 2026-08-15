@@ -1,0 +1,8 @@
+# Packages `make capture` should never report: explicitly installed by the
+# Arch/Omarchy bootstrap, machine-specific, and NOT auto-installed by
+# install.sh. Review per machine (e.g. intel-ucode is wrong on AMD).
+efibootmgr
+intel-ucode
+mkinitcpio
+omarchy-keyring
+sudo

@@ -11,7 +11,5 @@ voxtype-bin
 worktrunk
 wtype
 
-# --- Base-system / hardware (documented, NOT auto-installed) ---
-# These were explicitly installed by the Arch/Omarchy bootstrap and are
-# machine-specific. Review per machine instead of installing blindly:
-#   efibootmgr intel-ucode mkinitcpio sudo omarchy-keyring
+# Base-system/hardware packages are deliberately not listed here;
+# see packages/ignore.txt.

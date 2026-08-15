@@ -13,11 +13,16 @@ stow: ## (re)link all config packages, no package installs
 unstow: ## remove all symlinks (configs revert to nothing -- restore from backup!)
 	stow -D $(CONFIG_DIRS)
 
-capture: ## show packages installed on this machine that the manifest doesn't know about
-	@comm -23 <(pacman -Qqe | sort) \
+capture: ## show packages the manifests don't know about, and which file each belongs in
+	@missing=$$(comm -23 <(pacman -Qqe | sort) \
 	          <(cat $(OMARCHY_LISTS) 2>/dev/null | grep -v '^#' | tr -s ' \t' '\n' | sort -u) \
-	  | grep -vxF -f <(grep -vE '^\s*#|^\s*$$' packages/pacman.txt packages/aur.txt | cut -d: -f2) \
-	  || echo "manifest is up to date"
+	  | grep -vxF -f <(grep -hvE '^\s*#|^\s*$$' packages/pacman.txt packages/aur.txt packages/ignore.txt) || true); \
+	if [[ -z $$missing ]]; then echo "manifest is up to date"; else \
+	  foreign=$$(pacman -Qqm || true); \
+	  while read -r pkg; do \
+	    if grep -qxF "$$pkg" <<<"$$foreign"; then echo "add to packages/aur.txt:     $$pkg"; \
+	    else echo "add to packages/pacman.txt:  $$pkg"; fi; \
+	  done <<<"$$missing"; fi
 
 doctor: ## find broken symlinks in $$HOME and uncommitted drift in the repo
 	@echo "--- broken symlinks pointing into this repo:"
