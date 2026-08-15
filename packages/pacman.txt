@@ -5,6 +5,7 @@
 bitwarden
 bitwarden-cli
 kitty
+stow
 tailscale
 voxtype-bin
 worktrunk
