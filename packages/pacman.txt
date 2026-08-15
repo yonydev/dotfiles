@@ -1,0 +1,16 @@
+# Explicitly installed packages ON TOP of the Omarchy base.
+# Omarchy's own programs (hyprland, waybar, starship, fzf, eza, bat, nvim...)
+# are NOT listed here -- Omarchy installs and migrates those itself.
+# Regenerate the candidate list with: make capture
+bitwarden
+bitwarden-cli
+kitty
+tailscale
+voxtype-bin
+worktrunk
+wtype
+
+# --- Base-system / hardware (documented, NOT auto-installed) ---
+# These were explicitly installed by the Arch/Omarchy bootstrap and are
+# machine-specific. Review per machine instead of installing blindly:
+#   efibootmgr intel-ucode mkinitcpio sudo omarchy-keyring
