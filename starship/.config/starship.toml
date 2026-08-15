@@ -1,0 +1,80 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 200
+format = "$os[$directory$git_branch$git_status$nodejs$package$golang]($style)$character"
+
+[character]
+error_symbol = "[X](bold red)"
+success_symbol = "[❯](bold cyan)"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+repo_root_style = "bold cyan"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+format = "[$branch]($style) "
+style = "italic #bd93f9"
+
+[git_status]
+format     = '[$all_status]($style)'
+style      = "cyan"
+ahead      = "⇡${count} "
+diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
+behind     = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked  = "? "
+modified   = " "
+stashed    = "\\$${count} "
+staged     = ""
+renamed    = ""
+deleted    = ""
+
+[nodejs]
+format = "via [$symbol($version )]($style)"
+symbol = "⬢ "
+style = "#50fa7b"
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+
+[package]
+format = "[$symbol$version]($style) "
+symbol = "📦 "
+style = "bold #ffb86c"
+display_private = false
+
+[golang]
+format = "via [$symbol($version )]($style)"
+symbol = "🐹 "
+style = "#8be9fd"
+detect_files = ["go.mod", "go.sum"]
+
+[os]
+format = "[$symbol]($style)"
+style = "bold #ff79c6"
+disabled = false
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = "   "
+CentOS = " "
+Debian = " "
+Fedora = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mint = " "
+NixOS = " "
+Pop = " "
+Raspbian = " "
+RedHatEnterprise = " "
+Redhat = " "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
