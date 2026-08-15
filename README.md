@@ -32,9 +32,9 @@ symlinks as normal files and never leak into the repo.
 - `omarchy/.config/omarchy/themed/*.tpl` — user templates rendered by omarchy
   on every theme switch: fzf colors (`FZF_DEFAULT_OPTS_FILE`) and the starship
   rainbow prompt (`STARSHIP_CONFIG`) follow the active theme live.
-- `nvim/.config/nvim/lua/plugins/theme.lua` is an absolute symlink into
-  `~/.config/omarchy/current/theme/` (omarchy's live nvim theme). `install.sh`
-  recreates it per-machine; don't convert it to a regular file.
+- `~/.config/nvim/lua/plugins/theme.lua` is omarchy's live-theme symlink and
+  is deliberately NOT in this repo (`nvim/.stow-local-ignore`); `install.sh`
+  creates it on fresh machines. Don't add it as a regular file.
 - `bash/.bash-plugins/fzf-tab-completion` is a git submodule pinned upstream.
 
 ## Day 2

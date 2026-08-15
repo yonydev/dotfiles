@@ -38,8 +38,9 @@ done
 [[ -d $BACKUP_DIR ]] && echo "Displaced originals saved to: $BACKUP_DIR"
 
 # --- 4. Post-link fixups -------------------------------------------------------
-# nvim's theme.lua must point at omarchy's live theme (absolute link, per-machine $HOME)
-ln -sfn "$HOME/.config/omarchy/current/theme/neovim.lua" nvim/.config/nvim/lua/plugins/theme.lua
+# nvim's theme.lua is omarchy's live-theme symlink, deliberately NOT in this repo
+# (see nvim/.stow-local-ignore). Create it if a fresh machine doesn't have it yet.
+ln -sfn "$HOME/.config/omarchy/current/theme/neovim.lua" "$HOME/.config/nvim/lua/plugins/theme.lua"
 
 # Re-apply the current theme so user templates (fzf, starship) render
 if command -v omarchy-theme-set >/dev/null && [[ -f $HOME/.config/omarchy/current/theme.name ]]; then
