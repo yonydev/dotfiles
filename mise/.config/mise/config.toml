@@ -1,3 +1,6 @@
 [tools]
 go = "latest"
 node = "26.5.0"
+
+[settings]
+go_set_gobin = false

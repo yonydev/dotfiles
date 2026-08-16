@@ -33,4 +33,7 @@ bind -x '"\t": fzf_bash_completion'
 [ -f ~/.config/omarchy/current/theme/starship.toml ] && export STARSHIP_CONFIG="$HOME/.config/omarchy/current/theme/starship.toml"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
+# Keep go-installed tools in a version-independent dir so they survive
+# mise Go upgrades (mise would otherwise set GOBIN to the versioned install dir)
+export GOBIN="$HOME/.local/share/go/bin"
 export PATH="$HOME/.local/share/go/bin:$PATH"
