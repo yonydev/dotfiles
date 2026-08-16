@@ -12,7 +12,9 @@ return {
     {
       "<leader>rO",
       function()
-        local url = vim.fn.input("Remote file: ", "rsync://user@host//")
+        -- REMOTE_SSH_HOST (user@host) is machine-private, set in ~/.env-secrets
+        local host = vim.env.REMOTE_SSH_HOST or "user@host"
+        local url = vim.fn.input("Remote file: ", "rsync://" .. host .. "//")
         if url ~= "" then vim.cmd("RemoteOpen " .. url) end
       end,
       desc = "Remote Open File",
@@ -20,7 +22,8 @@ return {
     {
       "<leader>rB",
       function()
-        local url = vim.fn.input("Remote dir: ", "rsync://user@host//")
+        local host = vim.env.REMOTE_SSH_HOST or "user@host"
+        local url = vim.fn.input("Remote dir: ", "rsync://" .. host .. "//")
         if url ~= "" then vim.cmd("RemoteTreeBrowser " .. url) end
       end,
       desc = "Remote Browse",
