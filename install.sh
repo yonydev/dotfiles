@@ -40,7 +40,7 @@ done
 # --- 4. Post-link fixups -------------------------------------------------------
 # nvim's theme.lua is omarchy's live-theme symlink, deliberately NOT in this repo
 # (see nvim/.stow-local-ignore). Create it if a fresh machine doesn't have it yet.
-ln -sfn "$HOME/.config/omarchy/current/theme/neovim.lua" "$HOME/.config/nvim/lua/plugins/theme.lua"
+ln -sfn "$HOME/.local/state/omarchy/current/theme/neovim.lua" "$HOME/.config/nvim/lua/plugins/theme.lua"
 
 # Daily manifest-staleness notification
 chmod +x bin/manifest-check
@@ -48,8 +48,8 @@ systemctl --user daemon-reload
 systemctl --user enable --now dotfiles-manifest-check.timer
 
 # Re-apply the current theme so user templates (fzf, starship) render
-if command -v omarchy-theme-set >/dev/null && [[ -f $HOME/.config/omarchy/current/theme.name ]]; then
-  OMARCHY_THEME_SKIP_BACKGROUND=1 omarchy-theme-set "$(cat "$HOME/.config/omarchy/current/theme.name")"
+if command -v omarchy-theme-set >/dev/null && [[ -f $HOME/.local/state/omarchy/current/theme.name ]]; then
+  OMARCHY_THEME_SKIP_BACKGROUND=1 omarchy-theme-set "$(cat "$HOME/.local/state/omarchy/current/theme.name")"
 fi
 
 # --- 5. Manual steps -----------------------------------------------------------

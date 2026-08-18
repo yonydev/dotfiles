@@ -1,4 +1,6 @@
 [tools]
+claude = "latest"
+codex = "latest"
 go = "latest"
 node = "26.5.0"
 

@@ -3,7 +3,7 @@
 # https://github.com/lixiang117423/starship_config)
 # ==============================================================================
 # Colors follow the active Omarchy theme: this template is rendered by
-# omarchy-theme-set-templates into ~/.config/omarchy/current/theme/starship.toml
+# omarchy-theme-set-templates into ~/.local/state/omarchy/current/theme/starship.toml
 # on every `omarchy theme set`. STARSHIP_CONFIG (set in ~/.bashrc) points at
 # the rendered file; starship re-reads it on every prompt, so theme switches
 # recolor NEW prompts live in all open terminals.

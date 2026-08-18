@@ -49,7 +49,7 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 export FZF_DEFAULT_OPTS="--cycle --bind 'alt-j:preview-down,alt-k:preview-up,tab:down,btab:up,ctrl-space:toggle+down'"
 
 # Color Scheme: Follows the active Omarchy theme, live.
-# ~/.config/omarchy/current/theme/fzf-colors is rendered from the theme's
+# ~/.local/state/omarchy/current/theme/fzf-colors is rendered from the theme's
 # palette by the user template ~/.config/omarchy/themed/fzf-colors.tpl on
 # every `omarchy theme set`. fzf re-reads FZF_DEFAULT_OPTS_FILE on every
 # invocation, so theme switches recolor fzf in already-open terminals
@@ -65,8 +65,8 @@ export FZF_DEFAULT_OPTS="--cycle --bind 'alt-j:preview-down,alt-k:preview-up,tab
 #   marker:      Multi-select marker color
 #   spinner:     Loading spinner color
 #   header:      Header text color
-if [ -f "$HOME/.config/omarchy/current/theme/fzf-colors" ]; then
-  export FZF_DEFAULT_OPTS_FILE="$HOME/.config/omarchy/current/theme/fzf-colors"
+if [ -f "$HOME/.local/state/omarchy/current/theme/fzf-colors" ]; then
+  export FZF_DEFAULT_OPTS_FILE="$HOME/.local/state/omarchy/current/theme/fzf-colors"
 else
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 \

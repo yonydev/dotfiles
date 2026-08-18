@@ -93,5 +93,6 @@ hatch only (leaving the system, or a clean re-link via unstow + stow).
 
 ## Never in this repo
 
-`~/.env-secrets`, `~/.config/gh/` (OAuth token), `~/.config/omarchy/current/`
-(generated), anything identical to Omarchy stock configs.
+`~/.env-secrets`, `~/.config/gh/` and `~/.config/github-copilot/` (auth
+tokens), `~/.local/state/omarchy/current/` (generated), anything identical to
+Omarchy stock configs.
