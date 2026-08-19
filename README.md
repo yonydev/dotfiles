@@ -32,6 +32,17 @@ symlinks as normal files and never leak into the repo.
 - `omarchy/.config/omarchy/themed/*.tpl` — user templates rendered by omarchy
   on every theme switch: fzf colors (`FZF_DEFAULT_OPTS_FILE`) and the starship
   rainbow prompt (`STARSHIP_CONFIG`) follow the active theme live.
+- `omarchy/.config/omarchy/shell.json` + `plugins/yonatan.workspaces/` — the
+  Quickshell bar. Omarchy quatrro's bar is assembled from plugin widgets:
+  `shell.json` lays out the bar zones by plugin id (plus clock format and idle
+  timings), and `plugins/<id>/` holds user widgets (`manifest.json` + QML).
+  `yonatan.workspaces` is a clone of the stock workspaces widget (made with
+  `omarchy plugin clone omarchy.workspaces`) rendering Pac-Man on the focused
+  workspace, ghosts on occupied, pellets on empty, colored from the active
+  theme. Edit the QML, then `omarchy restart shell` (no hot reload). Caveat:
+  `omarchy plugin enable/disable` and the settings UI rewrite `shell.json`
+  via tmp+mv, which replaces the symlink with a real file — `make doctor`
+  catches it; merge the live file back into the repo and restow.
 - `~/.config/nvim/lua/plugins/theme.lua` is omarchy's live-theme symlink and
   is deliberately NOT in this repo (`nvim/.stow-local-ignore`); `install.sh`
   creates it on fresh machines. Don't add it as a regular file.
