@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Io
 import Quickshell.Hyprland
 import qs.Commons
 import qs.Ui
@@ -16,14 +17,64 @@ BarWidget {
   readonly property string ghostIcon: "󰊠"  // nf-md-ghost
   readonly property string dotIcon: "●"          // pellet
 
-  // Classic arcade palette: Pac-Man yellow, ghosts cycle through
-  // Blinky (red), Pinky (pink), Inky (cyan), Clyde (orange).
-  property color pacmanColor: "#FFEE00"
-  property var ghostColors: ["#FF0000", "#FFB8FF", "#00FFFF", "#FFB852"]
-  property color dotColor: Color.muted
+  // Characters keep their arcade identity but take their actual color from
+  // the current theme's colors.toml palette (like starship does with ANSI
+  // names), so they dim/brighten with every theme change.
+  property var themePalette: ({})
+
+  function paletteColor(names, fallback) {
+    for (var i = 0; i < names.length; i++) {
+      var value = themePalette[names[i]]
+      if (value) return value
+    }
+    return fallback
+  }
+
+  // Each lookup tries named keys first, then the ANSI colorN keys some
+  // themes (e.g. Dracula) use instead: 1=red 2=green 3=yellow 4=blue
+  // 5=magenta 6=cyan, 9-14 = bright variants.
+  readonly property color pacmanColor: paletteColor(["bright_yellow", "yellow", "color11", "color3"], Color.bar.active)
+  readonly property var ghostColors: [
+    paletteColor(["red", "color1", "bright_red", "color9"], Color.urgent),              // Blinky
+    paletteColor(["magenta", "color5", "bright_magenta", "color13"], Color.accent),     // Pinky
+    paletteColor(["cyan", "color6", "bright_cyan", "color14"], Color.accent),           // Inky
+    paletteColor(["orange", "bright_yellow", "yellow", "color3"], Color.foreground),    // Clyde
+    paletteColor(["bright_magenta", "color13", "magenta", "color5"], Color.accent),     // Sue
+    paletteColor(["green", "color2", "bright_green", "color10"], Color.accent),         // Funky
+    Color.muted,                                                                        // Spunky
+    paletteColor(["blue", "color4", "bright_blue", "color12"], Color.accent)            // frightened
+  ]
+  readonly property color dotColor: Color.muted
 
   function ghostColorFor(id) {
     return ghostColors[(id - 1) % ghostColors.length]
+  }
+
+  function loadPalette(raw) {
+    var lines = String(raw || "").split("\n")
+    var parsed = {}
+    for (var i = 0; i < lines.length; i++) {
+      var match = lines[i].match(/^\s*([A-Za-z0-9_-]+)\s*=\s*["']?(#[0-9A-Fa-f]{6})/)
+      if (match) parsed[match[1]] = match[2]
+    }
+    themePalette = parsed
+  }
+
+  property FileView paletteFile: FileView {
+    path: Color.currentThemePath + "/colors.toml"
+    watchChanges: true
+    printErrors: false
+    onLoaded: root.loadPalette(text())
+    onFileChanged: reload()
+  }
+
+  // Theme switches don't touch the colors.toml path (only what it resolves
+  // to), so re-read it when the shell pushes new foundational colors.
+  property Connections themeWatch: Connections {
+    target: Color
+    function onForegroundChanged() { root.paletteFile.reload() }
+    function onBackgroundChanged() { root.paletteFile.reload() }
+    function onAccentChanged() { root.paletteFile.reload() }
   }
 
   function workspaceById(id) {
