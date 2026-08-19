@@ -4,8 +4,12 @@
 # Regenerate the candidate list with: make capture
 bitwarden
 bitwarden-cli
+github-cli
 kitty
+neovim
+spotify
 stow
+typora
 tailscale
 voxtype-bin
 worktrunk

@@ -6,3 +6,23 @@ intel-ucode
 mkinitcpio
 omarchy-keyring
 sudo
+
+# Omarchy-managed in quatrro (installed by its own post-install/base)
+omarchy
+omarchy-settings
+dotnet-runtime-9.0
+
+# Pre-quatrro base remnants: omarchy 3.x installed these, 4.x doesn't.
+# Kept installed but not worth reproducing on a new machine.
+alacritty
+fwupd
+libqalculate
+qt5-wayland
+rust
+xmlstarlet
+
+# Installed but unused (bitwarden replaced 1password) -- candidates for
+# removal: sudo pacman -Rns 1password 1password-cli signal-desktop
+1password
+1password-cli
+signal-desktop
