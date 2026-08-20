@@ -9,6 +9,8 @@ kitty
 neovim
 spotify
 stow
+# tk provides Tcl/Tk (wish), required by gitk
+tk
 typora
 tailscale
 voxtype-bin
