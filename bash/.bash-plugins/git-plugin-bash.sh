@@ -7,6 +7,20 @@
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
+# Helper from oh-my-zsh core lib (the plugin's ggpush/ggpull/ggsup/gpsup/groh
+# aliases depend on it, but it lives outside the plugin upstream):
+# prints the current branch name, or the short commit hash on detached HEAD.
+git_current_branch() {
+  local ref
+  ref=$(git symbolic-ref --quiet HEAD 2>/dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return # not a git repo
+    ref=$(git rev-parse --short HEAD 2>/dev/null) || return
+  fi
+  echo "${ref#refs/heads/}"
+}
+
 #
 # Aliases
 # (sorted alphabetically)
