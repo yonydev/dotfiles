@@ -1,0 +1,5 @@
+# tuicr configuration -- https://github.com/agavra/tuicr/blob/main/docs/CONFIG.md
+# The "omarchy" theme is rendered from the active Omarchy theme on every
+# theme switch (template: ~/.config/omarchy/themed/tuicr.toml.tpl).
+theme = "omarchy"
+username = "yonatan"

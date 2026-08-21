@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 # Config directories in this repo to symlink into $HOME (GNU stow "packages").
 # These are OUR config files, named after the app they configure -- this list
 # does not install any software; programs live in packages/pacman.txt.
-CONFIG_DIRS=(bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux)
+CONFIG_DIRS=(bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux tuicr)
 BACKUP_DIR="$HOME/.local/state/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
 # --- 1. Preflight -------------------------------------------------------------
@@ -41,6 +41,10 @@ done
 # nvim's theme.lua is omarchy's live-theme symlink, deliberately NOT in this repo
 # (see nvim/.stow-local-ignore). Create it if a fresh machine doesn't have it yet.
 ln -sfn "$HOME/.local/state/omarchy/current/theme/neovim.lua" "$HOME/.config/nvim/lua/plugins/theme.lua"
+
+# tuicr's "omarchy" theme is the omarchy-rendered file (see themed/tuicr.toml.tpl)
+mkdir -p "$HOME/.config/tuicr/themes"
+ln -sfn "$HOME/.local/state/omarchy/current/theme/tuicr.toml" "$HOME/.config/tuicr/themes/omarchy.toml"
 
 # Daily manifest-staleness notification
 chmod +x bin/manifest-check
