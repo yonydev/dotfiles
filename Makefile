@@ -1,6 +1,6 @@
 # Config dirs in this repo to symlink (stow terminology: "packages").
 # NOT software -- programs to install live in packages/pacman.txt.
-CONFIG_DIRS := bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux tuicr
+CONFIG_DIRS := bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux tuicr cliamp
 OMARCHY_LISTS := $(HOME)/.local/share/omarchy/install/omarchy-base.packages \
                  $(HOME)/.local/share/omarchy/install/omarchy-other.packages
 

@@ -21,6 +21,13 @@ source "$OMARCHY_PATH/default/bash/rc"
 
 [ -f ~/.env-secrets ] && source ~/.env-secrets
 
+# Render cliamp's config from its template whenever the template is newer,
+# substituting secrets (CLIAMP_SPOTIFY_CLIENT_ID) from ~/.env-secrets.
+# The generated config.toml is a real file, never committed to the repo.
+if [ -f ~/.config/cliamp/config.toml.tpl ] && [ ~/.config/cliamp/config.toml.tpl -nt ~/.config/cliamp/config.toml ] && command -v envsubst >/dev/null; then
+  envsubst < ~/.config/cliamp/config.toml.tpl > ~/.config/cliamp/config.toml
+fi
+
 # fzf-plugin for git
 source ~/.bash-plugins/fzf-git.sh
 
