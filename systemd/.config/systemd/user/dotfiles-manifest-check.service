@@ -1,5 +1,8 @@
 [Unit]
 Description=Notify when installed packages are missing from the dotfiles manifests
+# Persistent-timer catch-up runs fire right at login; wait for the session
+# (and its notification daemon) so the alert isn't dispatched into the void.
+After=graphical-session.target
 
 [Service]
 Type=oneshot
