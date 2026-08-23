@@ -15,15 +15,21 @@ fi
 echo "manifest stale: $(wc -l <<<"$out") line(s) unrecorded"
 echo "$out"
 
-body="$out
-(run 'make capture' in ~/dotfiles)"
-
 # Critical urgency = notification stays until dismissed (a once-a-day
 # actionable alert must not expire while unattended).
 if command -v omarchy-notification-send >/dev/null; then
+  # omarchy-shell supports body-markup: <b> and <font color=...> (Qt rich
+  # text; <span> is not honored). Bold the manifest paths, tint the command
+  # with the active theme's accent color.
+  accent=$(omarchy-theme-color accent 2>/dev/null || echo "#89b4fa")
+  styled=$(sed -E 's|(packages/[a-z]+\.txt)|<b>\1</b>|' <<<"$out")
+  body="$styled
+run <font color='$accent'>make capture</font> in ~/dotfiles"
   omarchy-notification-send -u critical -g 󰏗 --app-name dotfiles \
     "Package manifest is stale" "$body"
 else
+  # Markup support unknown off-omarchy: keep the fallback plain text.
   notify-send -u critical -a dotfiles -i software-update-available \
-    "Package manifest is stale" "$body"
+    "Package manifest is stale" "$out
+(run 'make capture' in ~/dotfiles)"
 fi
