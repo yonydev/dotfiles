@@ -4,6 +4,7 @@ codex = "latest"
 "github:agavra/tuicr" = "latest"
 go = "latest"
 node = "26.5.0"
+opencode = "latest"
 
 [settings]
 go_set_gobin = false
