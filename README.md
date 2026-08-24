@@ -12,6 +12,8 @@ customized configs and additionally installed programs.
 git clone --recurse-submodules <this-repo> ~/dotfiles
 cd ~/dotfiles && ./install.sh
 # then copy ~/.env-secrets over securely (optional, not in git)
+# and keep it owner-only readable:
+chmod 600 ~/.env-secrets
 ```
 
 ## Layout
