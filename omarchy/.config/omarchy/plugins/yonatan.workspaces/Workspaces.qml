@@ -130,8 +130,8 @@ BarWidget {
         bar: root.bar
         text: focused ? root.pacmanIcon : (occupied ? root.ghostIcon : root.dotIcon)
         foreground: focused ? root.pacmanColor : (occupied ? root.ghostColorFor(modelData) : root.dotColor)
-        fontSize: occupied || focused ? Style.font.body : Style.font.body * 0.6
-        opacity: occupied || focused ? 1 : 0.6
+        fontSize: occupied || focused ? Style.font.body : Style.font.body * 0.8
+        opacity: occupied || focused ? 1 : 0.85
         tooltipText: "Workspace " + (modelData === 10 ? "0" : String(modelData))
         horizontalMargin: 6
         verticalPadding: 6
