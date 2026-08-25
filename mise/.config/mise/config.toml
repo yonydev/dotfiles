@@ -5,6 +5,7 @@ codex = "latest"
 go = "latest"
 node = "26.5.0"
 opencode = "latest"
+python = "latest"
 
 [settings]
 go_set_gobin = false
