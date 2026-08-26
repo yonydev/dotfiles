@@ -50,6 +50,42 @@ BarWidget {
     return ghostColors[(id - 1) % ghostColors.length]
   }
 
+  // Arcade "frightened mode": when Pac-Man (the focus marker) leaves a
+  // workspace, the ghost left behind blinks blue<->white for a moment,
+  // like after a power pellet. Trigger: focus change; only ghosts
+  // (occupied workspaces) flash.
+  readonly property color frightBlue: paletteColor(["blue", "color4", "bright_blue", "color12"], "#2121de")
+  readonly property color frightWhite: paletteColor(["bright_foreground", "color15"], "#f8f8f2")
+  property int lastFocusedId: Hyprland.focusedWorkspace !== null ? Hyprland.focusedWorkspace.id : -1
+  property int frightenedId: -1
+  property bool frightPhase: false
+
+  Connections {
+    target: Hyprland
+    function onFocusedWorkspaceChanged() {
+      var now = Hyprland.focusedWorkspace !== null ? Hyprland.focusedWorkspace.id : -1
+      if (root.lastFocusedId > 0 && now !== root.lastFocusedId) {
+        root.frightenedId = root.lastFocusedId
+        frightTimer.restart()
+      }
+      root.lastFocusedId = now
+    }
+  }
+
+  Timer {
+    id: frightTimer
+    interval: 2500
+    onTriggered: root.frightenedId = -1
+  }
+
+  // The blink itself: only ticks while a ghost is frightened, idle otherwise.
+  Timer {
+    interval: 250
+    repeat: true
+    running: root.frightenedId > 0
+    onTriggered: root.frightPhase = !root.frightPhase
+  }
+
   function loadPalette(raw) {
     var lines = String(raw || "").split("\n")
     var parsed = {}
@@ -129,7 +165,11 @@ BarWidget {
 
         bar: root.bar
         text: focused ? root.pacmanIcon : (occupied ? root.ghostIcon : root.dotIcon)
-        foreground: focused ? root.pacmanColor : (occupied ? root.ghostColorFor(modelData) : root.dotColor)
+        readonly property bool frightened: occupied && modelData === root.frightenedId
+
+        foreground: focused ? root.pacmanColor
+                  : frightened ? (root.frightPhase ? root.frightWhite : root.frightBlue)
+                  : (occupied ? root.ghostColorFor(modelData) : root.dotColor)
         fontSize: occupied || focused ? Style.font.body : Style.font.body * 0.8
         opacity: occupied || focused ? 1 : 0.85
         tooltipText: "Workspace " + (modelData === 10 ? "0" : String(modelData))
