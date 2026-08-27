@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 # Config directories in this repo to symlink into $HOME (GNU stow "packages").
 # These are OUR config files, named after the app they configure -- this list
 # does not install any software; programs live in packages/pacman.txt.
-CONFIG_DIRS=(bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux tuicr cliamp)
+CONFIG_DIRS=(bash chromium claude git hypr kitty lazydocker mise nvim omarchy starship systemd tmux tuicr cliamp vm-curator)
 BACKUP_DIR="$HOME/.local/state/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 
 # --- 1. Preflight -------------------------------------------------------------
