@@ -1,6 +1,6 @@
-vm_library_path = "~/vm-space"
-metadata_path = "~/.config/vm-curator/metadata"
-ascii_art_path = "~/.config/vm-curator/ascii"
+vm_library_path = "/home/yonatan/vm-space"
+metadata_path = "/home/yonatan/.config/vm-curator/metadata"
+ascii_art_path = "/home/yonatan/.config/vm-curator/ascii"
 snapshot_prefix = "snapshot"
 default_memory_mb = 4096
 default_cpu_cores = 2

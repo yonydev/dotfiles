@@ -7,6 +7,9 @@ bitwarden-cli
 github-cli
 kitty
 neovim
+# All qemu UI/display/audio modules; qemu-base alone fails with
+# "Display 'gtk' is not available" / "Virtio VGA not available"
+qemu-desktop
 spotify
 stow
 # tk provides Tcl/Tk (wish), required by gitk
