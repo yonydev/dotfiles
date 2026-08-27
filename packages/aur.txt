@@ -1,1 +1,2 @@
-# AUR packages (built via yay). None yet -- add one name per line.
+# AUR packages (built via yay). -- add one name per line.
+vm-curator
