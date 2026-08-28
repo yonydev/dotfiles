@@ -142,13 +142,35 @@ BarWidget {
 
   readonly property real trailingGap: root.vertical ? 0 : Style.spaceReal(1.5)
 
-  implicitWidth: grid.implicitWidth + trailingGap
-  implicitHeight: grid.implicitHeight
+  // Pill wrapper: padding along the bar axis, inset across it so the capsule
+  // sits slimmer than the bar itself.
+  readonly property real pillPad: Style.space(3)
+  readonly property real pillInset: 3
+
+  implicitWidth: grid.implicitWidth + trailingGap + (root.vertical ? 0 : pillPad * 2)
+  implicitHeight: grid.implicitHeight + (root.vertical ? pillPad * 2 : 0)
+
+  // Theme-aware pill: Color.* properties re-resolve on every theme switch,
+  // so the wash and outline follow the active palette automatically.
+  Rectangle {
+    anchors.fill: parent
+    anchors.rightMargin: (root.vertical ? root.pillInset : root.trailingGap)
+    anchors.leftMargin: root.vertical ? root.pillInset : 0
+    anchors.topMargin: root.vertical ? 0 : root.pillInset
+    anchors.bottomMargin: root.vertical ? 0 : root.pillInset
+    radius: Math.min(width, height) / 2
+    color: Util.alpha(Color.foreground, 0.08)
+    border.width: 1
+    border.color: Util.alpha(Color.accent, 0.35)
+  }
 
   GridLayout {
     id: grid
     anchors.fill: parent
-    anchors.rightMargin: root.trailingGap
+    anchors.rightMargin: root.trailingGap + (root.vertical ? 0 : root.pillPad)
+    anchors.leftMargin: root.vertical ? 0 : root.pillPad
+    anchors.topMargin: root.vertical ? root.pillPad : 0
+    anchors.bottomMargin: root.vertical ? root.pillPad : 0
     columns: root.vertical ? 1 : root.workspaceIds().length
     columnSpacing: root.vertical ? 0 : Style.space(1)
     rowSpacing: root.vertical ? Style.space(2) : 0
