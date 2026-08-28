@@ -1,5 +1,23 @@
 {
+  "model": "claude-fable-5[1m]",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "extraKnownMarketplaces": {
+    "omc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
+      }
+    }
+  },
   "tui": "fullscreen",
   "theme": "dark",
-  "model": "claude-fable-5[1m]"
+  "enabledPlugins": {
+    "oh-my-claudecode@omc": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
+  }
 }
