@@ -1,7 +1,15 @@
 {
-  "model": "claude-fable-5[1m]",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "model": "claude-fable-5[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
+  },
+  "enabledPlugins": {
+    "oh-my-claudecode@omc": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "omc": {
@@ -9,15 +17,14 @@
         "source": "git",
         "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
   "tui": "fullscreen",
-  "theme": "dark",
-  "enabledPlugins": {
-    "oh-my-claudecode@omc": true
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
-  }
+  "theme": "dark"
 }
