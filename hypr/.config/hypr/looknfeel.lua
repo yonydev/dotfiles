@@ -25,6 +25,20 @@ hl.config({
   },
 })
 
+-- Gravity: windows drop in from above and bounce, fall away on close,
+-- and workspaces ride vertically like an elevator
+hl.curve("landing", { type = "bezier", points = { { 0.22, 1.15 }, { 0.45, 1 } } })
+hl.curve("floatOut", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
+
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "landing", style = "slidevert" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.8, bezier = "landing", style = "slidevert" })
+hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "landing" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 2.2, bezier = "landing", style = "slide top" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 2.2, bezier = "easeInOutCubic", style = "slide bottom" })
+hl.animation({ leaf = "layersIn", enabled = true, speed = 3, bezier = "landing", style = "slide top" })
+hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.4, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.2, bezier = "almostLinear" })
+
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
 -- hl.config({
 --   animations = {
