@@ -37,6 +37,14 @@ hl.animation({ leaf = "windowsIn", enabled = true, speed = 2.2, bezier = "landin
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 2.2, bezier = "easeInOutCubic", style = "slide bottom" })
 hl.animation({ leaf = "layersIn", enabled = true, speed = 3, bezier = "landing", style = "slide top" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.4, bezier = "almostLinear" })
+
+-- Re-enable animation for the launcher/menu popups (Omarchy disables it by default);
+-- soft popin so they inflate into place like the windows do
+hl.layer_rule({
+  match = { namespace = "^(omarchy-menu|omarchy-image-selector|omarchy-emojis|omarchy-clipboard)$" },
+  no_anim = false,
+  animation = "popin 80%",
+})
 hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.2, bezier = "almostLinear" })
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
