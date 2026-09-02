@@ -20,3 +20,11 @@ map("i", "jj", "<ESC>", { noremap = true, silent = true })
 
 -- No Highlight
 map("n", "<leader>h", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
+
+-- Gitsigns hunk navigation
+map("n", "<leader>ghj", function()
+  require("gitsigns").nav_hunk("next")
+end, { desc = "Next Hunk" })
+map("n", "<leader>ghk", function()
+  require("gitsigns").nav_hunk("prev")
+end, { desc = "Prev Hunk" })
