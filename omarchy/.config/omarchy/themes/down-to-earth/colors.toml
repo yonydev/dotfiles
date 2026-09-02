@@ -1,0 +1,32 @@
+# Down To Earth — desert ochre and dusty slate sky
+mode = "dark"
+
+accent = "#ca8134"
+selection = "#4a3223"
+muted = "#6b5648"
+
+background = "#1f1410"
+dark_background = "#170e0b"
+darker_background = "#100907"
+lighter_background = "#33221a"
+
+foreground = "#e6d7c3"
+dark_foreground = "#a99d8f"
+light_foreground = "#f0e4d3"
+bright_foreground = "#faf1e0"
+
+red = "#c65b40"
+yellow = "#d9a648"
+orange = "#ca8134"
+green = "#8a9a6b"
+cyan = "#7fa9a3"
+blue = "#7d93a8"
+magenta = "#c1798b"
+brown = "#7f3721"
+
+bright_red = "#e07a5a"
+bright_yellow = "#eec06a"
+bright_green = "#a7b985"
+bright_cyan = "#9cc4bd"
+bright_blue = "#9db2c6"
+bright_magenta = "#d898a7"
