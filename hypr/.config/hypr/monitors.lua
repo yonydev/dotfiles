@@ -14,6 +14,15 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = omarchy
 -- manage it via the catch-all above.
 hl.monitor({ output = "desc:Dell Inc. DELL U2723QE 2BFH1P3", mode = "preferred", position = "0x0", scale = 2 })
 
+-- Pin workspaces: 1-5 on the Dell, 6-10 on the laptop panel. When the Dell
+-- disconnects, Hyprland folds 1-5 onto the laptop and moves them back on reconnect.
+for ws = 1, 5 do
+  hl.workspace_rule({ workspace = tostring(ws), monitor = "desc:Dell Inc. DELL U2723QE 2BFH1P3", default = (ws == 1) })
+end
+for ws = 6, 10 do
+  hl.workspace_rule({ workspace = tostring(ws), monitor = "eDP-1", default = (ws == 6) })
+end
+
 -- Configure a specific monitor.
 -- hl.monitor({ output = "DP-2", mode = "2560x1440@144", position = "0x0", scale = 1 })
 
