@@ -47,6 +47,13 @@ hl.layer_rule({
 })
 hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.2, bezier = "almostLinear" })
 
+-- More translucent windows (Omarchy defaults: 0.985/0.96 general, 1.0/0.985 browsers).
+-- Loaded after the defaults, so these win. Covers localsend and everything else
+-- tagged default-opacity; browsers keep their own slightly-more-opaque rule.
+o.window({ tag = "default-opacity" }, { opacity = "0.94 0.88" })
+o.window({ tag = "chromium-based-browser" }, { opacity = "0.96 0.92" })
+o.window({ tag = "firefox-based-browser" }, { opacity = "0.96 0.92" })
+
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
 -- hl.config({
 --   animations = {
