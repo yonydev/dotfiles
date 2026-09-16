@@ -2,6 +2,7 @@
 # Arch/Omarchy bootstrap, machine-specific, and NOT auto-installed by
 # install.sh. Review per machine (e.g. intel-ucode is wrong on AMD).
 efibootmgr
+linux
 intel-ucode
 mkinitcpio
 omarchy-keyring
