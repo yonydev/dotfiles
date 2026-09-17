@@ -2,14 +2,15 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "fable[1m]",
   "statusLine": {
     "type": "command",
     "command": "node ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hud/omc-hud.mjs"
   },
   "enabledPlugins": {
     "oh-my-claudecode@omc": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "mempalace@mempalace": true
   },
   "extraKnownMarketplaces": {
     "omc": {
@@ -22,6 +23,12 @@
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "mempalace": {
+      "source": {
+        "source": "github",
+        "repo": "MemPalace/mempalace"
       }
     }
   },

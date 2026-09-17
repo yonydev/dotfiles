@@ -10,3 +10,6 @@ python = "latest"
 
 [settings]
 go_set_gobin = false
+
+[settings.upgrade]
+auto_prune = false
